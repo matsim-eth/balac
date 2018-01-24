@@ -7,19 +7,87 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>uav</name>
+  	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<skipTests>false</skipTests>
+	</properties>
+	
   <url>http://maven.apache.org</url>
+    	<profiles>
+		<profile>
+			<id>zip</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>3.0.2</version>
+					</plugin>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.5.3</version>
+						<configuration>
+							<descriptor>src/main/assembly/assembly-release.xml</descriptor>
+						</configuration>
+						<executions>
+							<execution>
+								<id>create-archive</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<repositories>
+		<!-- Needed for geotools in matsim main -->
+		<repository>
+			<id>osgeo</id>
+			<name>Geotools repository</name>
+			<url>http://download.osgeo.org/webdav/geotools</url>
+		</repository>
+		<repository>
+			<id>matsim-eth</id>
+			<url>http://dl.bintray.com/matsim-eth/matsim</url>
+		</repository>
 
+		<repository>
+			<id>baseline_scenario</id>
+			<url>https://packagecloud.io/eth-ivt/matsim/maven2</url>
+		</repository>
+	</repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.matsim</groupId>
+    	<artifactId>matsim</artifactId>
+    	<version>0.10.0-nov17</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.ethz.matsim</groupId>
+    	<artifactId>mode_choice</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.ethz.matsim</groupId>
+    	<artifactId>r5_pt</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.ethz.matsim</groupId>
+    	<artifactId>baseline_scenario</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

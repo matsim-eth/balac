@@ -46,7 +46,7 @@ public class TotalDistanceVehicle {
 		Map<Integer, Coord> depLocOut = handler.getDepLocOut();
 		Map<Integer, Coord> arrLocOut = handler.getArrLocOut();		
 		
-		double speed = 30;
+		double speed = 25;
 		double liftofftime = 60;
 		
 		String s = reader.readLine();

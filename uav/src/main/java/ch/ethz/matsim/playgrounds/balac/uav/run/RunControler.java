@@ -19,7 +19,6 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 
-import ch.ethz.matsim.baseline_scenario.BaselineModule;
 import ch.ethz.matsim.baseline_scenario.analysis.simulation.ModeShareListenerModule;
 import ch.ethz.matsim.mode_choice.ModeChoiceModel;
 import ch.ethz.matsim.mode_choice.alternatives.ChainAlternatives;
@@ -66,9 +65,9 @@ public class RunControler {
 		double waitingTime = Double.parseDouble(args[3]);
 	   
 		config.controler().setOutputDirectory(config.controler().getOutputDirectory() + Double.toString(cruisingSpeed) + "_" +
-		Double.toString(liftoffTime) + "_" + Double.toString(waitingTime) + "_0.5price");
+		Double.toString(liftoffTime) + "_" + Double.toString(waitingTime) + "_0.5price_sens5");
 		config.controler().setRunId(Double.toString(cruisingSpeed) + "_" +
-				Double.toString(liftoffTime) + "_" + Double.toString(waitingTime) + "_0.5price");
+				Double.toString(liftoffTime) + "_" + Double.toString(waitingTime) + "_0.5price_sens5");
 		
 		((UAVConfigGroup)config.getModules().get("uav")).setCruisingSpeed(cruisingSpeed);
 		((UAVConfigGroup)config.getModules().get("uav")).setLiftoffTime(liftoffTime);
@@ -141,7 +140,7 @@ public class RunControler {
 				BasicModeChoiceParameters bikeParameters = new BasicModeChoiceParameters(-0.2, 0.0, -0.0617 / 60.0,
 						true);
 				
-				UAVModeChoiceParameters uavParameters = new UAVModeChoiceParameters(-0.3471, -2.550 / 1000.0 * 0.1045, -0.0347 / 60.0, 
+				UAVModeChoiceParameters uavParameters = new UAVModeChoiceParameters(-0.3471, -0.1045, -0.0393 / 60.0, 
 						-0.02079 / 60.0, false);				
 				
 				TripPredictor carPredictor = null;

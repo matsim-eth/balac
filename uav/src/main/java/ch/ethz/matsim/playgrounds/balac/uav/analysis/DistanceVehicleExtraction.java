@@ -16,6 +16,7 @@ public class DistanceVehicleExtraction {
 
 		
 		BufferedReader reader = IOUtils.getBufferedReader(args[0]);
+		reader.readLine();
 		BufferedWriter writer = IOUtils.getBufferedWriter(args[1]);
 		String s = reader.readLine();
 		

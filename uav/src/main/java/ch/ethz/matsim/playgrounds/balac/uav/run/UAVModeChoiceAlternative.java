@@ -34,8 +34,9 @@ public class UAVModeChoiceAlternative implements ModeChoiceAlternative {
 			cache.put(trip, prediction);
 		}
 
+		double cost = 4.0 + 2.0 * prediction.getPredictedTravelDistance() / 1000.0;
 		return params.getConstant() + params.getBetaTravelTime() * prediction.getPredictedTravelTime()
-				+ params.getBetaDistance() * prediction.getPredictedTravelDistance() + params.getBetaWaiting() * waitingTime;
+				+ params.getBetaDistance() * cost + params.getBetaWaiting() * waitingTime;
 	}
 
 	@Override

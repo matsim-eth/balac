@@ -32,7 +32,7 @@ public class UAVUsers {
 		for (String s1 : speed) {
 			for (String s2 : liftoff) {
 				for (String s3 : waiting) {
-					String popLoc = args[0] +"/out" + s1 + "_" + s2 +"_" + s3 + "_0.5price/ITERS/it.100/" + s1 + "_" + s2 +"_" + s3 + "_0.5price.100.plans.xml.gz";
+					String popLoc = args[0];// +"/ieee" + s1 + "_" + s2 +"_" + s3 + "_1.0price/ITERS/it.180/" + s1 + "_" + s2 +"_" + s3 + "_1.0price.180.plans.xml.gz";
 					
 					File f = new File(popLoc);
 					if(f.exists() ) {				
@@ -42,7 +42,7 @@ public class UAVUsers {
 						popReader.readFile(popLoc);
 						NetworkReaderMatsimV2 networkReader = new NetworkReaderMatsimV2(scenario.getNetwork());
 						networkReader.readFile(args[1]);
-						String outLoc = args[2] + s1 + "_" + s2 +"_" + s3 + "_0.5price.csv";
+						String outLoc = args[2] + s1 + "_" + s2 +"_" + s3 + "_1.0price.csv";
 						BufferedWriter writer = IOUtils.getBufferedWriter(outLoc);
 						writer.write("personId,distance,traveltime,start_x,start_y,end_x,end_y,start_x_wgs,start_y_wgs,end_x_wgs,end_y_wgs");
 						writer.newLine();
@@ -55,7 +55,7 @@ public class UAVUsers {
 								
 								if (pe instanceof Leg) {
 									
-									if (((Leg) pe).getMode().equals("uav")) {
+									if (((Leg) pe).getMode().equals("uav") && ((Leg) pe).getRoute().getDistance() > 0.0) {
 										
 										writer.write(person.getId() + "," + 
 										((Leg) pe).getRoute().getDistance() + "," + ((Leg) pe).getRoute().getTravelTime());

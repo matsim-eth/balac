@@ -123,7 +123,7 @@ public class LPPrepareDistanceMin {
 			writer.write("+ c" + i + "e ");
 		}
 		
-		writer.write("= 184\n");
+		writer.write("= 53\n");
 		
 		for (int i = 1; i <= numberOfTrips; i++) {
 			boolean start = true;
